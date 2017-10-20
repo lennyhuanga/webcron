@@ -62,7 +62,7 @@ func (this *TaskController) List() {
 	// 分组列表
 	groups, _ := models.TaskGroupGetList(1, 100)
 
-	this.Data["pageTitle"] = "任务列表"
+	this.Data["pageTitle"] = "任务列表1"
 	this.Data["list"] = list
 	this.Data["groups"] = groups
 	this.Data["groupid"] = groupId
