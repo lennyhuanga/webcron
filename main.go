@@ -1,13 +1,12 @@
 package main
 
 import (
-	"github.com/astaxie/beego"
-	"github.com/lisijie/webcron/app/controllers"
-	"github.com/lisijie/webcron/app/jobs"
-	_ "github.com/lisijie/webcron/app/mail"
-	"github.com/lisijie/webcron/app/models"
 	"html/template"
 	"net/http"
+	"github.com/astaxie/beego"
+	"webcron/app/models"
+	"webcron/app/jobs"
+	"webcron/app/controllers"
 )
 
 const VERSION = "1.0.0"
@@ -28,6 +27,8 @@ func main() {
 	if beego.AppConfig.String("runmode") == "prod" {
 		beego.SetLevel(beego.LevelInformational)
 	}
+	beego.SetLevel(beego.LevelEmergency)
+
 	beego.AppConfig.Set("version", VERSION)
 
 	// 路由设置
@@ -37,9 +38,9 @@ func main() {
 	beego.Router("/profile", &controllers.MainController{}, "*:Profile")
 	beego.Router("/gettime", &controllers.MainController{}, "*:GetTime")
 	beego.Router("/help", &controllers.HelpController{}, "*:Index")
+
 	beego.AutoRouter(&controllers.TaskController{})
 	beego.AutoRouter(&controllers.GroupController{})
-
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run()
 }
