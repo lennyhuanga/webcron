@@ -19,15 +19,19 @@
 		<hr />
 		
 		<div class="btn-toolbar">
-		
+			{{if eq .loginUserName "admin"}}
 			<div class="btn-group btn-batch">
 				<a class="btn btn-large" href="#"><i class="icon-edit icon-white"></i> 批量操作</a>
 				<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 				<ul class="dropdown-menu">
+			
 				<li><a href="javascript:;" onclick="javascript:batch('delete');"><i class="icon-trash"></i> 删除</a></li>
+				
 				</ul>
 			</div>
-			
+			{{else}}
+						    
+			{{end}}
 			<div class="btn-group">
 				<a href="{{urlfor "TaskController.List"}}" class="btn btn-large"><span class="icon-chevron-left"></span> 返 回</a>
 			</div>

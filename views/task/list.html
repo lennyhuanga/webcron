@@ -4,7 +4,7 @@
 	<div class="widget ">
 		<div class="widget-header">
 			<i class="icon-th-list"></i>
- 			<h3>任务列表</h3>
+ 			<h3>任务列表{{.loginUserName}}</h3>
 		</div> <!-- /widget-header -->
 
 		<div class="widget-content">
@@ -12,7 +12,7 @@
 		<div class="alert hide" role="alert"></div>
 		
 		<div class="btn-toolbar">
-		
+		 {{if eq .loginUserName "admin"}}
 			<div class="btn-group btn-batch">
 				<a class="btn btn-large" href="#"><i class="icon-edit icon-white"></i> 批量操作</a>
 				<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -20,13 +20,22 @@
 				<li><a href="javascript:;" onclick="javascript:batch('active');"><i class="icon-play"></i> 激活</a></li>
 				<li><a href="javascript:;" onclick="javascript:batch('pause');"><i class="icon-pause"></i> 暂停</a></li>
 				<li class="divider"></li>
-				<li><a href="javascript:;" onclick="javascript:batch('delete');"><i class="icon-trash"></i> 删除</a></li>
+
+					<li>
+					
+					<a href="javascript:;" onclick="javascript:batch('delete');"><i class="icon-trash"></i> 删除</a>	    			
+						    
+					</li>
+					
 				</ul>
 			</div>
-			
 			<div class="btn-group">
 			<a href="{{urlfor "TaskController.Add"}}" class="btn btn-large btn-info"><span class="icon-plus"></span> 新建任务</a>
 			</div>
+			{{else}}
+						    
+			{{end}}
+			
 			
 			<div class="btn-group  btn-large" style="float:right">
 			<form method="post" name="s" action="{{urlfor "TaskController.List"}}">
@@ -51,7 +60,7 @@
 				<th>时间表达式</th>
 				<th class="span2">上次执行时间</th>
 				<th class="span2">下次执行时间</th>
-				<th class="span5">操作</th>
+				<th class="span5">操作{{$.pageTitle}}</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -73,6 +82,9 @@
 					<td>{{$v.prev_time}}</td>
 					<td>{{$v.next_time}}</td>
 					<td>
+					
+					
+					 
 						{{if eq $v.status 0}}
 						<a class="btn btn-danger" href="{{urlfor "TaskController.Start"}}?id={{$v.id}}">
 							<span class="icon-play-circle icon-white"></span> 激活
@@ -82,16 +94,25 @@
 							<span class="icon-ban-circle icon-white"></span> 暂停
 						</a>
 						{{end}}
+						
+					
 						<a class="btn btn-info" href="{{urlfor "TaskController.Edit"}}?id={{$v.id}}">
 							<span class="icon-pencil icon-white"></span> 编辑
 						</a>
+						
+					
 						<a class="btn btn-info btn-run" href="{{urlfor "TaskController.Run"}}?id={{$v.id}}">
+
 							<span class="icon-refresh icon-white"></span> 执行
+
 						</a>
 						<a class="btn btn-info" href="{{urlfor "TaskController.Logs"}}?id={{$v.id}}">
-							<span class="icon-comments"></span> 日志
-                       </a>					
+							<span class="icon-comments"></span> 日志{{$v.userId}}
+                       </a>	
+									
 					</td>
+					
+					
 				</tr>
 			{{end}}
 			</tbody>
