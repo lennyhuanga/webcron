@@ -2,8 +2,9 @@ package jobs
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/lisijie/cron"
 	"sync"
+	"webcron/app/cron"
+
 )
 
 var (

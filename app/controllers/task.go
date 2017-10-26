@@ -1,14 +1,14 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
-	libcron "github.com/lisijie/cron"
-	"github.com/lisijie/webcron/app/jobs"
-	"github.com/lisijie/webcron/app/libs"
-	"github.com/lisijie/webcron/app/models"
 	"strconv"
 	"strings"
 	"time"
+	libcron "webcron/app/cron"
+	"github.com/astaxie/beego"
+	"webcron/app/models"
+	"webcron/app/jobs"
+	"webcron/app/libs"
 )
 
 type TaskController struct {
@@ -17,6 +17,7 @@ type TaskController struct {
 
 // 任务列表
 func (this *TaskController) List() {
+
 	page, _ := this.GetInt("page")
 	if page < 1 {
 		page = 1
@@ -27,7 +28,6 @@ func (this *TaskController) List() {
 		filters = append(filters, "group_id", groupId)
 	}
 	result, count := models.TaskGetList(page, this.pageSize, filters...)
-
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
@@ -62,7 +62,8 @@ func (this *TaskController) List() {
 	// 分组列表
 	groups, _ := models.TaskGroupGetList(1, 100)
 
-	this.Data["pageTitle"] = "任务列表1"
+	this.Data["pageTitle"] = "任务列表"
+
 	this.Data["list"] = list
 	this.Data["groups"] = groups
 	this.Data["groupid"] = groupId
