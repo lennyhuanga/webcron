@@ -77,15 +77,19 @@ CREATE TABLE `t_resource` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- ----------------------------
--- Table structure for role 角色表
+-- Table structure for t_roles 角色表
 -- ----------------------------
-DROP TABLE IF EXISTS `t_role`;
-CREATE TABLE `t_role` (
-  `name` varchar(10) NOT NULL,
+DROP TABLE IF EXISTS `t_roles`;
+CREATE TABLE `t_roles` (
+  `role_name` varchar(20) NOT NULL,
+  `user_id` varchar(10) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for role_resource 角色资源表
