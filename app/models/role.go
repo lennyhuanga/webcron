@@ -55,9 +55,7 @@ func RoleGetList(page, pageSize int) ([]*Roles, int64) {
 	offset := (page - 1) * pageSize
 
 	list := make([]*Roles, 0)
-	fmt.Println("-------------------")
 	query := orm.NewOrm().QueryTable(TableName("roles"))
-	fmt.Println("------------eeeeeee-------")
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offset).All(&list)
 

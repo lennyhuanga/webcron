@@ -40,7 +40,7 @@ func (this *RoleController) Add() {
 		this.ajaxMsg("", MSG_OK)
 	}
 
-	this.Data["pageTitle"] = "添加分组"
+	this.Data["pageTitle"] = "添加角色"
 	this.display()
 }
 
@@ -62,7 +62,7 @@ func (this *RoleController) Edit() {
 		this.ajaxMsg("", MSG_OK)
 	}
 
-	this.Data["pageTitle"] = "编辑分组"
+	this.Data["pageTitle"] = "编辑角色"
 	this.Data["role"] = role
 	this.display()
 }
